@@ -80,6 +80,8 @@ it_parc/
 │   ├── it_parc_groups.xml
 │   └── it_parc_rules.xml
 ├── static/
+│   ├── img/
+│   │   └── icon.png
 │   └── src/
 │       ├── css/
 │       │   └── dashboard.css
@@ -93,10 +95,7 @@ it_parc/
 │   ├── dashboard_views.xml
 │   ├── equipment_views.xml
 │   ├── intervention_views.xml
-│   ├── menus.xml
-│   └── templates.xml
-├── views/
-│   └── ... (vues XML)
+│   └── menus.xml
 └── wizards/
     ├── __init__.py
     ├── excel_export_wizard.py
