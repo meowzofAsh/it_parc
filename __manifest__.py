@@ -14,6 +14,7 @@ Gestion complète du parc informatique :
     """,
     'author': "TECHPARK CI",
     'website': "",
+    'icon': '/it_parc/static/img/icon.png',
     'category': 'Industries',
     'version': '1.0',
     'depends': ['base', 'mail', 'web', 'hr'],

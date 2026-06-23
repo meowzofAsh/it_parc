@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class RenewContractWizard(models.TransientModel):
@@ -11,6 +12,8 @@ class RenewContractWizard(models.TransientModel):
 
     def action_renew(self):
         contract = self.contract_id
+        if self.new_end_date <= contract.end_date:
+            raise ValidationError(_("La nouvelle date de fin doit être postérieure à la date de fin actuelle (%s).") % contract.end_date)
         contract.write({
             'state': 'renewed',
         })

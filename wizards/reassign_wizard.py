@@ -13,7 +13,7 @@ class ReassignWizard(models.TransientModel):
     def action_reassign(self):
         equipment = self.equipment_id
         old_assignments = equipment.assignment_ids.filtered(lambda a: not a.end_date)
-        old_assignments.write({'end_date': fields.Date.today()})
+        old_assignments.write({'end_date': fields.Date.today(), 'reason': self.reason})
 
         equipment.write({
             'employee_id': self.employee_id.id,

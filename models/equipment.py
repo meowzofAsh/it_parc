@@ -79,11 +79,13 @@ class ItEquipment(models.Model):
 
     def write(self, vals):
         if 'employee_id' in vals and vals.get('employee_id'):
-            vals['state'] = 'assigned'
             for rec in self:
+                if rec.state not in ('draft', 'assigned'):
+                    continue
                 if rec.employee_id and rec.employee_id.id != vals['employee_id']:
                     old_assignments = rec.assignment_ids.filtered(lambda a: not a.end_date)
                     old_assignments.write({'end_date': fields.Date.today()})
+                rec.state = 'assigned'
         return super().write(vals)
 
     @api.model
@@ -99,14 +101,13 @@ class ItEquipment(models.Model):
         ], ['cost'])
         maintenance_cost = sum(m.get('cost', 0) for m in month_costs)
 
-        top5 = self.search_read([], ['name'])
-        top5_with_count = []
-        for eq in top5:
-            eq_obj = self.browse(eq['id'])
-            count = len(eq_obj.intervention_ids)
-            top5_with_count.append({'name': eq['name'], 'count': count})
-        top5_with_count.sort(key=lambda x: x['count'], reverse=True)
-        top5_names = [t['name'] for t in top5_with_count[:5] if t['count'] > 0]
+        intervention_counts = Intervention.read_group(
+            [('equipment_id', '!=', False)], ['equipment_id', 'equipment_id:count'],
+            ['equipment_id'], orderby='equipment_id_count desc', limit=5)
+        top5_names = [
+            self.browse(ic['equipment_id'][0]).name
+            for ic in intervention_counts if ic['equipment_id_count'] > 0
+        ]
         top_panne_count = len(top5_names)
 
         all_categories = self.search_read([('state', '!=', 'retired')], ['category'])
