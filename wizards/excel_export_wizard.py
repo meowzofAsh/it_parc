@@ -1,6 +1,8 @@
 import base64
 from io import BytesIO
 
+from datetime import timedelta
+
 from odoo import models, fields, api, _
 
 
@@ -51,10 +53,11 @@ class ExcelExportWizard(models.TransientModel):
         return self._make_xlsx('Coûts maintenance', headers, rows)
 
     def _export_expiring_contracts(self):
+        today = fields.Date.today()
         contracts = self.env['it.contract'].search([
             ('state', '=', 'active'),
-            ('days_remaining', '>=', 0),
-            ('days_remaining', '<=', 60),
+            ('end_date', '>=', today),
+            ('end_date', '<=', today + timedelta(days=60)),
         ])
         headers = ['Nom', 'Fournisseur', 'Date fin', 'Jours restants', 'Montant']
         rows = []

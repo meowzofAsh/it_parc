@@ -1,5 +1,4 @@
 from odoo import models, fields, api, _
-from datetime import date
 
 
 class ItContract(models.Model):
@@ -14,7 +13,7 @@ class ItContract(models.Model):
     end_date = fields.Date(string="Date de fin", required=True, tracking=True)
     amount = fields.Float(string="Montant", tracking=True)
     equipment_ids = fields.One2many('it.equipment', 'contract_id', string="Équipements couverts")
-    days_remaining = fields.Integer(string="Jours restants", compute='_compute_days_remaining', store=True)
+    days_remaining = fields.Integer(string="Jours restants", compute='_compute_days_remaining')
     state = fields.Selection([
         ('active', 'Actif'),
         ('expired', 'Expiré'),
@@ -25,7 +24,7 @@ class ItContract(models.Model):
     def _compute_days_remaining(self):
         for rec in self:
             if rec.end_date:
-                delta = rec.end_date - date.today()
+                delta = rec.end_date - fields.Date.today()
                 rec.days_remaining = delta.days
             else:
                 rec.days_remaining = 0

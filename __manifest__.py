@@ -48,5 +48,5 @@ Gestion complète du parc informatique :
     },
     'installable': True,
     'application': True,
-    'license': 'LGPL-3',
+    'license': '',
 }

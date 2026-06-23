@@ -1,3 +1,5 @@
+from collections import Counter
+
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -86,7 +88,8 @@ class ItEquipment(models.Model):
     @api.model
     def get_dashboard_data(self):
         total = self.search_count([])
-        total_value = sum(self.search_read([], ['purchase_value']) or [], 0)
+        records = self.search_read([], ['purchase_value'])
+        total_value = sum(r.get('purchase_value', 0) or 0 for r in records)
 
         Intervention = self.env['it.intervention']
         month_costs = Intervention.search_read([
@@ -95,12 +98,16 @@ class ItEquipment(models.Model):
         ], ['cost'])
         maintenance_cost = sum(m.get('cost', 0) for m in month_costs)
 
-        top_panne = self.search_read([
-            ('state', '=', 'maintenance'),
-        ], ['name'])
-        top_panne_count = len(top_panne)
+        top5 = self.search_read([], ['name'])
+        top5_with_count = []
+        for eq in top5:
+            eq_obj = self.browse(eq['id'])
+            count = len(eq_obj.intervention_ids)
+            top5_with_count.append({'name': eq['name'], 'count': count})
+        top5_with_count.sort(key=lambda x: x['count'], reverse=True)
+        top5_names = [t['name'] for t in top5_with_count[:5] if t['count'] > 0]
+        top_panne_count = len(top5_names)
 
-        from collections import Counter
         all_categories = self.search_read([('state', '!=', 'retired')], ['category'])
         counter = Counter(r['category'] for r in all_categories if r['category'])
         category_map = dict(self._fields['category'].selection)

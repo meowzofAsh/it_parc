@@ -4,13 +4,13 @@
         <field name="name">it.alert.tree</field>
         <field name="model">it.alert</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="type"/>
                 <field name="reference"/>
                 <field name="expiration_date"/>
                 <field name="read"/>
-            </tree>
+            </list>
         </field>
     </record>
 

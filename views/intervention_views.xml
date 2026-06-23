@@ -4,7 +4,7 @@
         <field name="name">it.intervention.tree</field>
         <field name="model">it.intervention</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="equipment_id"/>
                 <field name="type"/>
                 <field name="technician_id"/>
@@ -12,7 +12,7 @@
                 <field name="duration"/>
                 <field name="cost"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
