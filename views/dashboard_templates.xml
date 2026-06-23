@@ -20,6 +20,9 @@
                     <span class="o_kpi_label">Équipements en maintenance</span>
                 </div>
             </div>
+            <div class="o_dashboard_chart">
+                <canvas id="dashboardChart" width="400" height="300"/>
+            </div>
         </div>
     </template>
 </odoo>

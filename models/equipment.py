@@ -100,9 +100,18 @@ class ItEquipment(models.Model):
         ], ['name'])
         top_panne_count = len(top_panne)
 
+        from collections import Counter
+        all_categories = self.search_read([('state', '!=', 'retired')], ['category'])
+        counter = Counter(r['category'] for r in all_categories if r['category'])
+        category_map = dict(self._fields['category'].selection)
+        chart_labels = [category_map.get(k, k) for k in counter]
+        chart_values = list(counter.values())
+
         return {
             'total_equipments': total,
             'total_value': total_value,
             'maintenance_cost': maintenance_cost,
             'top_panne_count': top_panne_count,
+            'chart_labels': chart_labels,
+            'chart_values': chart_values,
         }

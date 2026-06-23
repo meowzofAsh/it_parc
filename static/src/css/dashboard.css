@@ -1,21 +1,23 @@
 .o_dashboard {
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .o_dashboard_kpis {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 .o_kpi_card {
     background: #fff;
     border: 1px solid #dee2e6;
     border-radius: 8px;
     padding: 20px;
-    min-width: 200px;
+    min-width: 180px;
     flex: 1;
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .o_kpi_value {
     font-size: 32px;
@@ -28,4 +30,17 @@
     color: #6c757d;
     margin-top: 4px;
     display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.o_dashboard_chart {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.o_dashboard_chart canvas {
+    width: 100% !important;
+    max-height: 350px;
 }
