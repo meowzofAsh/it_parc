@@ -11,7 +11,7 @@
                 <field name="start_date"/>
                 <field name="duration"/>
                 <field name="cost"/>
-                <field name="state"/>
+                <field name="state" widget="badge"/>
             </tree>
         </field>
     </record>
@@ -21,13 +21,19 @@
         <field name="model">it.intervention</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_start" string="Démarrer" type="object"
+                            states="planned" class="btn-primary"/>
+                    <button name="action_done" string="Terminer" type="object"
+                            states="in_progress" class="btn-success"/>
+                    <field name="state" widget="statusbar" statusbar_visible="planned,in_progress,done"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="equipment_id"/>
                             <field name="type"/>
                             <field name="technician_id"/>
-                            <field name="state"/>
                         </group>
                         <group>
                             <field name="start_date"/>

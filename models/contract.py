@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from datetime import date
 
 
@@ -29,3 +29,18 @@ class ItContract(models.Model):
                 rec.days_remaining = delta.days
             else:
                 rec.days_remaining = 0
+
+    def action_renew(self):
+        self.ensure_one()
+        return {
+            'name': _('Renouvellement de contrat'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'renew.contract.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_contract_id': self.id},
+        }
+
+    def cron_check_expiry(self):
+        expiring = self.search([('state', '=', 'active'), ('end_date', '<=', fields.Date.today())])
+        expiring.write({'state': 'expired'})

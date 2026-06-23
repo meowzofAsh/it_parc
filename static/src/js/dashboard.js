@@ -5,12 +5,12 @@ export class ItParcDashboard extends Component {
     static template = "it_parc.Dashboard";
 
     setup() {
-        this.state = useState({ kpis: {}, charts: {} });
+        this.state = useState({ kpis: {} });
         onWillStart(async () => {
             const data = await this.env.services.orm.call(
-                "it_parc.dashboard", "get_statistics"
+                "it.equipment", "get_dashboard_data"
             );
-            Object.assign(this.state, data);
+            this.state.kpis = data;
         });
     }
 }

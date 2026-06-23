@@ -8,7 +8,7 @@
                 <field name="name"/>
                 <field name="serial_number"/>
                 <field name="category"/>
-                <field name="state"/>
+                <field name="state" widget="badge" decoration-success="state == 'assigned'" decoration-warning="state == 'maintenance'" decoration-muted="state == 'retired'"/>
                 <field name="employee_id"/>
                 <field name="department_id"/>
                 <field name="warranty_date"/>
@@ -21,16 +21,31 @@
         <field name="model">it.equipment</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_assign" string="Affecter" type="object"
+                            states="draft" class="btn-primary"/>
+                    <button name="action_maintenance" string="Mettre en maintenance" type="object"
+                            states="assigned" class="btn-warning"/>
+                    <button name="action_retire" string="Retirer du parc" type="object"
+                            states="draft,assigned,maintenance" class="btn-danger"/>
+                    <button name="action_draft" string="Remettre en brouillon" type="object"
+                            states="retired" class="btn-secondary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,assigned,maintenance,retired"/>
+                </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_reassign" string="Réaffecter" type="object"
+                                class="oe_stat_button" icon="fa-exchange"
+                                help="Réaffecter cet équipement à un autre employé"/>
+                    </div>
                     <group>
                         <group>
                             <field name="name"/>
                             <field name="serial_number"/>
                             <field name="category"/>
-                            <field name="state"/>
                         </group>
                         <group>
-                            <field name="purchase_value"/>
+                            <field name="purchase_value" widget="monetary"/>
                             <field name="purchase_date"/>
                             <field name="warranty_date"/>
                             <field name="active"/>

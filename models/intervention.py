@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class ItIntervention(models.Model):
@@ -32,3 +33,21 @@ class ItIntervention(models.Model):
                 rec.duration = delta.total_seconds() / 3600
             else:
                 rec.duration = 0
+
+    @api.constrains('cost')
+    def _check_cost(self):
+        for rec in self:
+            if rec.cost and rec.cost < 0:
+                raise ValidationError(_("Le coût ne peut pas être négatif."))
+
+    def action_start(self):
+        self.state = 'in_progress'
+        self.equipment_id.state = 'maintenance'
+
+    def action_done(self):
+        self.state = 'done'
+        if not self.end_date:
+            self.end_date = fields.Datetime.now()
+        if self.equipment_id.intervention_ids.filtered(lambda i: i.state not in ('done',)):
+            return
+        self.equipment_id.state = 'assigned'
