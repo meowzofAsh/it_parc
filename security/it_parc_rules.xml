@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rule_it_technician_intervention" model="ir.rule">
+            <field name="name">IT Technicien: voir ses propres interventions</field>
+            <field name="model_id" ref="model_it_intervention"/>
+            <field name="domain_force">[('technician_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('it_parc.group_it_technician'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo>

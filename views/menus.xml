@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_it_equipment" model="ir.actions.act_window">
+        <field name="name">Équipements</field>
+        <field name="res_model">it.equipment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_it_equipment_search"/>
+        <field name="help" type="html">
+            <p>Gérez les équipements informatiques du parc.</p>
+        </field>
+    </record>
+
+    <record id="action_it_assignment" model="ir.actions.act_window">
+        <field name="name">Historique des affectations</field>
+        <field name="res_model">it.assignment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_it_intervention" model="ir.actions.act_window">
+        <field name="name">Interventions</field>
+        <field name="res_model">it.intervention</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <record id="action_it_contract" model="ir.actions.act_window">
+        <field name="name">Contrats fournisseurs</field>
+        <field name="res_model">it.contract</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_it_alert" model="ir.actions.act_window">
+        <field name="name">Alertes</field>
+        <field name="res_model">it.alert</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_it_parc_root" name="Parc Informatique" sequence="10"/>
+
+    <menuitem id="menu_it_parc_equipment" name="Équipements"
+              parent="menu_it_parc_root" action="action_it_equipment" sequence="10"/>
+
+    <menuitem id="menu_it_parc_intervention" name="Interventions"
+              parent="menu_it_parc_root" action="action_it_intervention" sequence="20"/>
+
+    <menuitem id="menu_it_parc_contract" name="Contrats"
+              parent="menu_it_parc_root" action="action_it_contract" sequence="30"/>
+
+    <menuitem id="menu_it_parc_alert" name="Alertes"
+              parent="menu_it_parc_root" action="action_it_alert" sequence="40"/>
+
+    <menuitem id="menu_it_parc_assignment" name="Affectations"
+              parent="menu_it_parc_root" action="action_it_assignment" sequence="50"/>
+</odoo>

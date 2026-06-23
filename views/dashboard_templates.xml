@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="Dashboard" name="it_parc Dashboard">
+        <div class="o_dashboard">
+            <div class="o_dashboard_kpi">
+                <span t-esc="state.kpis.total_equipments"/>
+            </div>
+        </div>
+    </template>
+</odoo>

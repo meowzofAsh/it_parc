@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_it_intervention_tree" model="ir.ui.view">
+        <field name="name">it.intervention.tree</field>
+        <field name="model">it.intervention</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="equipment_id"/>
+                <field name="type"/>
+                <field name="technician_id"/>
+                <field name="start_date"/>
+                <field name="duration"/>
+                <field name="cost"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_it_intervention_form" model="ir.ui.view">
+        <field name="name">it.intervention.form</field>
+        <field name="model">it.intervention</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="equipment_id"/>
+                            <field name="type"/>
+                            <field name="technician_id"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="duration"/>
+                            <field name="cost"/>
+                        </group>
+                    </group>
+                    <field name="report"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_intervention_calendar" model="ir.ui.view">
+        <field name="name">it.intervention.calendar</field>
+        <field name="model">it.intervention</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_date" date_stop="end_date" color="technician_id">
+                <field name="equipment_id"/>
+                <field name="type"/>
+            </calendar>
+        </field>
+    </record>
+</odoo>

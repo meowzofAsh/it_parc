@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_equipment_card_template">
+        <t t-foreach="docs" t-as="doc">
+            <div class="page">
+                <h2>Fiche d'équipement</h2>
+                <table class="table table-bordered">
+                    <tr><td>Nom</td><td><t t-esc="doc.name"/></td></tr>
+                    <tr><td>N° série</td><td><t t-esc="doc.serial_number"/></td></tr>
+                    <tr><td>Catégorie</td><td><t t-esc="doc.category"/></td></tr>
+                    <tr><td>État</td><td><t t-esc="doc.state"/></td></tr>
+                    <tr><td>Valeur d'achat</td><td><t t-esc="doc.purchase_value"/></td></tr>
+                    <tr><td>Garantie jusqu'au</td><td><t t-esc="doc.warranty_date"/></td></tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_inventory_template">
+        <div class="page">
+            <h2>Inventaire du parc informatique</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>N° série</th>
+                        <th>Catégorie</th>
+                        <th>État</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="doc">
+                        <tr>
+                            <td><t t-esc="doc.name"/></td>
+                            <td><t t-esc="doc.serial_number"/></td>
+                            <td><t t-esc="doc.category"/></td>
+                            <td><t t-esc="doc.state"/></td>
+                            <td><t t-esc="doc.purchase_value"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_maintenance_template">
+        <div class="page">
+            <h2>Historique des maintenances</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Équipement</th>
+                        <th>Type</th>
+                        <th>Technicien</th>
+                        <th>Date</th>
+                        <th>Coût</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="doc">
+                        <tr>
+                            <td><t t-esc="doc.equipment_id.name"/></td>
+                            <td><t t-esc="doc.type"/></td>
+                            <td><t t-esc="doc.technician_id.name"/></td>
+                            <td><t t-esc="doc.start_date"/></td>
+                            <td><t t-esc="doc.cost"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </template>
+</odoo>

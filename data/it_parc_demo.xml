@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="equipment_demo_1" model="it.equipment">
+            <field name="name">PC Portable Dell Latitude 5540</field>
+            <field name="serial_number">DL-5540-001</field>
+            <field name="category">workstation</field>
+            <field name="purchase_value">850000</field>
+            <field name="purchase_date">2025-01-15</field>
+            <field name="warranty_date">2027-01-15</field>
+            <field name="state">assigned</field>
+        </record>
+
+        <record id="equipment_demo_2" model="it.equipment">
+            <field name="name">Serveur HP ProLiant DL380</field>
+            <field name="serial_number">HP-380-002</field>
+            <field name="category">server</field>
+            <field name="purchase_value">3200000</field>
+            <field name="purchase_date">2024-06-01</field>
+            <field name="warranty_date">2027-06-01</field>
+            <field name="state">assigned</field>
+        </record>
+
+        <record id="equipment_demo_3" model="it.equipment">
+            <field name="name">Imprimante HP LaserJet Pro</field>
+            <field name="serial_number">HP-LJ-003</field>
+            <field name="category">printer</field>
+            <field name="purchase_value">350000</field>
+            <field name="purchase_date">2025-03-10</field>
+            <field name="warranty_date">2027-03-10</field>
+            <field name="state">assigned</field>
+        </record>
+
+        <record id="equipment_demo_4" model="it.equipment">
+            <field name="name">Switch Cisco Catalyst 9200</field>
+            <field name="serial_number">CS-9200-004</field>
+            <field name="category">network</field>
+            <field name="purchase_value">1200000</field>
+            <field name="purchase_date">2024-09-20</field>
+            <field name="warranty_date">2027-09-20</field>
+            <field name="state">assigned</field>
+        </record>
+
+        <record id="equipment_demo_5" model="it.equipment">
+            <field name="name">Téléphone IP Cisco 8845</field>
+            <field name="serial_number">CS-8845-005</field>
+            <field name="category">phone</field>
+            <field name="purchase_value">180000</field>
+            <field name="purchase_date">2025-06-01</field>
+            <field name="warranty_date">2028-06-01</field>
+            <field name="state">assigned</field>
+        </record>
+
+        <record id="equipment_demo_6" model="it.equipment">
+            <field name="name">PC Fixe Dell OptiPlex 7010</field>
+            <field name="serial_number">DL-OPT-006</field>
+            <field name="category">workstation</field>
+            <field name="purchase_value">650000</field>
+            <field name="purchase_date">2024-01-10</field>
+            <field name="warranty_date">2026-01-10</field>
+            <field name="state">maintenance</field>
+        </record>
+
+        <record id="equipment_demo_7" model="it.equipment">
+            <field name="name">PC Portable Lenovo ThinkPad X1</field>
+            <field name="serial_number">LEN-X1-007</field>
+            <field name="category">workstation</field>
+            <field name="purchase_value">1200000</field>
+            <field name="purchase_date">2025-11-01</field>
+            <field name="warranty_date">2028-11-01</field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="equipment_demo_8" model="it.equipment">
+            <field name="name">Serveur Dell PowerEdge R750</field>
+            <field name="serial_number">DL-PE-008</field>
+            <field name="category">server</field>
+            <field name="purchase_value">4500000</field>
+            <field name="purchase_date">2025-12-01</field>
+            <field name="warranty_date">2028-12-01</field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="equipment_demo_9" model="it.equipment">
+            <field name="name">Imprimante Canon imageRUNNER</field>
+            <field name="serial_number">CN-IR-009</field>
+            <field name="category">printer</field>
+            <field name="purchase_value">2500000</field>
+            <field name="purchase_date">2023-08-15</field>
+            <field name="warranty_date">2025-08-15</field>
+            <field name="state">retired</field>
+        </record>
+
+        <record id="equipment_demo_10" model="it.equipment">
+            <field name="name">Point d'accès Ubiquiti UniFi6</field>
+            <field name="serial_number">UB-U6-010</field>
+            <field name="category">network</field>
+            <field name="purchase_value">250000</field>
+            <field name="purchase_date">2025-04-01</field>
+            <field name="warranty_date">2027-04-01</field>
+            <field name="state">assigned</field>
+        </record>
+
+        <record id="contract_demo_1" model="it.contract">
+            <field name="name">Contrat maintenance Dell</field>
+            <field name="start_date">2025-01-01</field>
+            <field name="end_date">2026-12-31</field>
+            <field name="amount">2500000</field>
+            <field name="state">active</field>
+        </record>
+
+        <record id="contract_demo_2" model="it.contract">
+            <field name="name">Contrat licence Cisco</field>
+            <field name="start_date">2025-06-01</field>
+            <field name="end_date">2026-06-01</field>
+            <field name="amount">1800000</field>
+            <field name="state">active</field>
+        </record>
+
+        <record id="contract_demo_3" model="it.contract">
+            <field name="name">Contrat maintenance HP</field>
+            <field name="start_date">2024-06-01</field>
+            <field name="end_date">2025-06-01</field>
+            <field name="amount">1500000</field>
+            <field name="state">expired</field>
+        </record>
+
+        <record id="intervention_demo_1" model="it.intervention">
+            <field name="equipment_id" ref="equipment_demo_6"/>
+            <field name="type">corrective</field>
+            <field name="start_date">2026-06-10 09:00:00</field>
+            <field name="end_date">2026-06-10 11:30:00</field>
+            <field name="cost">75000</field>
+            <field name="state">done</field>
+            <field name="report">&lt;p&gt;Remplacement disque dur défectueux.&lt;/p&gt;</field>
+        </record>
+
+        <record id="intervention_demo_2" model="it.intervention">
+            <field name="equipment_id" ref="equipment_demo_1"/>
+            <field name="type">preventive</field>
+            <field name="start_date">2026-06-15 14:00:00</field>
+            <field name="end_date">2026-06-15 15:00:00</field>
+            <field name="cost">35000</field>
+            <field name="state">done</field>
+            <field name="report">&lt;p&gt;Nettoyage et mise à jour logicielle.&lt;/p&gt;</field>
+        </record>
+
+        <record id="intervention_demo_3" model="it.intervention">
+            <field name="equipment_id" ref="equipment_demo_3"/>
+            <field name="type">corrective</field>
+            <field name="start_date">2026-06-18 08:00:00</field>
+            <field name="end_date">2026-06-18 09:30:00</field>
+            <field name="cost">25000</field>
+            <field name="state">done</field>
+            <field name="report">&lt;p&gt;Remplacement cartouche toner.&lt;/p&gt;</field>
+        </record>
+
+        <record id="intervention_demo_4" model="it.intervention">
+            <field name="equipment_id" ref="equipment_demo_2"/>
+            <field name="type">preventive</field>
+            <field name="start_date">2026-06-20 10:00:00</field>
+            <field name="end_date">2026-06-20 12:00:00</field>
+            <field name="cost">120000</field>
+            <field name="state">planned</field>
+            <field name="report">&lt;p&gt;Maintenance trimestrielle serveur.&lt;/p&gt;</field>
+        </record>
+
+        <record id="intervention_demo_5" model="it.intervention">
+            <field name="equipment_id" ref="equipment_demo_4"/>
+            <field name="type">corrective</field>
+            <field name="start_date">2026-06-18 08:00:00</field>
+            <field name="end_date">2026-06-18 10:00:00</field>
+            <field name="cost">50000</field>
+            <field name="state">in_progress</field>
+            <field name="report">&lt;p&gt;Diagnostic panne réseau.&lt;/p&gt;</field>
+        </record>
+    </data>
+</odoo>

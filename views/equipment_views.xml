@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_it_equipment_tree" model="ir.ui.view">
+        <field name="name">it.equipment.tree</field>
+        <field name="model">it.equipment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="serial_number"/>
+                <field name="category"/>
+                <field name="state"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="warranty_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_it_equipment_form" model="ir.ui.view">
+        <field name="name">it.equipment.form</field>
+        <field name="model">it.equipment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="serial_number"/>
+                            <field name="category"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="purchase_value"/>
+                            <field name="purchase_date"/>
+                            <field name="warranty_date"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="department_id"/>
+                        <field name="contract_id"/>
+                    </group>
+                    <notebook>
+                        <page name="interventions" string="Interventions">
+                            <field name="intervention_ids">
+                                <tree>
+                                    <field name="type"/>
+                                    <field name="technician_id"/>
+                                    <field name="start_date"/>
+                                    <field name="cost"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="assignments" string="Historique des affectations">
+                            <field name="assignment_ids">
+                                <tree>
+                                    <field name="employee_id"/>
+                                    <field name="department_id"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="reason"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field name="note"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_equipment_search" model="ir.ui.view">
+        <field name="name">it.equipment.search</field>
+        <field name="model">it.equipment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="serial_number"/>
+                <field name="employee_id"/>
+                <filter name="filter_assigned" string="Affectés" domain="[('state','=','assigned')]"/>
+                <filter name="filter_maintenance" string="En maintenance" domain="[('state','=','maintenance')]"/>
+                <separator/>
+                <filter name="filter_warranty" string="Garantie expirée" domain="[('warranty_date','&lt;',time.strftime('%%Y-%%m-%%d'))]"/>
+                <group expand="0" string="Group by">
+                    <filter name="group_category" string="Catégorie" context="{'group_by':'category'}"/>
+                    <filter name="group_state" string="État" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
