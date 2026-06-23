@@ -34,6 +34,7 @@ Gestion complète du parc informatique :
         'wizards/import_csv_wizard_views.xml',
         'wizards/renew_contract_wizard_views.xml',
         'wizards/excel_export_views.xml',
+        'data/ir_config_parameter_data.xml',
         'data/ir_cron_data.xml',
         'report/report_views.xml',
         'report/report_equipment_card_template.xml',

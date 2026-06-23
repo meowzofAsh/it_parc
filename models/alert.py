@@ -18,20 +18,21 @@ class ItAlert(models.Model):
     ], string="Référence", tracking=True)
     expiration_date = fields.Date(string="Date d'expiration", required=True, tracking=True)
     read = fields.Boolean(string="Lue", default=False, tracking=True)
-    alert_days = fields.Integer(string="Alerte (jours avant)", default=30)
 
     @api.model
     def cron_generate_alerts(self):
         Alert = self.env['it.alert']
         Equipment = self.env['it.equipment']
         Contract = self.env['it.contract']
+        threshold = int(self.env['ir.config_parameter'].sudo().get_param(
+            'it_parc.alert_threshold_days', default=30))
 
         today = fields.Date.today()
 
         equipments = Equipment.search([('warranty_date', '!=', False), ('state', '!=', 'retired')])
         for eq in equipments:
             delta = (eq.warranty_date - today).days
-            if 0 <= delta <= 30:
+            if 0 <= delta <= threshold:
                 existing = Alert.search([
                     ('type', '=', 'warranty'),
                     ('expiration_date', '=', eq.warranty_date),
@@ -48,7 +49,7 @@ class ItAlert(models.Model):
         contracts = Contract.search([('state', '=', 'active'), ('end_date', '!=', False)])
         for ct in contracts:
             delta = (ct.end_date - today).days
-            if 0 <= delta <= 30:
+            if 0 <= delta <= threshold:
                 existing = Alert.search([
                     ('type', '=', 'contract'),
                     ('expiration_date', '=', ct.end_date),

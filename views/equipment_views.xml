@@ -37,6 +37,12 @@
                         <button name="action_reassign" string="Réaffecter" type="object"
                                 class="oe_stat_button" icon="fa-exchange"
                                 help="Réaffecter cet équipement à un autre employé"/>
+                        <button name="%(it_parc.report_equipment_card)d" string="Fiche"
+                                type="action" class="oe_stat_button" icon="fa-file-pdf-o"
+                                help="Fiche équipement PDF"/>
+                        <button name="%(it_parc.report_inventory)d" string="Inventaire"
+                                type="action" class="oe_stat_button" icon="fa-print"
+                                help="Rapport inventaire complet"/>
                     </div>
                     <group>
                         <group>

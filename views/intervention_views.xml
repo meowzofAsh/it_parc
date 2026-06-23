@@ -29,6 +29,11 @@
                     <field name="state" widget="statusbar" statusbar_visible="planned,in_progress,done"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(it_parc.report_maintenance_history)d" string="Historique"
+                                type="action" class="oe_stat_button" icon="fa-history"
+                                help="Historique des maintenances PDF"/>
+                    </div>
                     <group>
                         <group>
                             <field name="equipment_id"/>
