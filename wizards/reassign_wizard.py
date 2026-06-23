@@ -1,5 +1,4 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
 
 
 class ReassignWizard(models.TransientModel):
@@ -13,8 +12,6 @@ class ReassignWizard(models.TransientModel):
 
     def action_reassign(self):
         equipment = self.equipment_id
-        old_employee = equipment.employee_id
-
         old_assignments = equipment.assignment_ids.filtered(lambda a: not a.end_date)
         old_assignments.write({'end_date': fields.Date.today()})
 

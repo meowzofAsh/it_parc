@@ -17,7 +17,7 @@
                 </div>
                 <div class="o_kpi_card">
                     <span class="o_kpi_value" t-esc="state.kpis.top_panne_count"/>
-                    <span class="o_kpi_label">Équipements en maintenance</span>
+                    <span class="o_kpi_label">Top 5 équipements (interventions)</span>
                 </div>
             </div>
             <div class="o_dashboard_chart">

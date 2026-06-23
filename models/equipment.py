@@ -22,6 +22,7 @@ class ItEquipment(models.Model):
         ('other', 'Autre'),
     ], string="Catégorie", required=True, default='workstation', tracking=True)
     purchase_value = fields.Float(string="Valeur d'achat", tracking=True)
+    currency_id = fields.Many2one('res.currency', string="Devise", default=lambda self: self.env.company.currency_id)
     purchase_date = fields.Date(string="Date d'achat", tracking=True)
     warranty_date = fields.Date(string="Date de fin de garantie", tracking=True)
     state = fields.Selection([

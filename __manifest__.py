@@ -42,11 +42,12 @@ Gestion complète du parc informatique :
     ],
     'assets': {
         'web.assets_backend': [
+            ('include', 'web.chartjs'),
             'it_parc/static/src/js/dashboard.js',
             'it_parc/static/src/css/dashboard.css',
         ],
     },
     'installable': True,
     'application': True,
-    'license': '',
+    'license': 'LGPL-3',
 }

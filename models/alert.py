@@ -63,4 +63,4 @@ class ItAlert(models.Model):
                     })
 
     def action_mark_read(self):
-        self.read = True
+        self.write({'read': True})

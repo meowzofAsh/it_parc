@@ -64,4 +64,9 @@ class ImportCsvWizard(models.TransientModel):
         if errors:
             msg += "\n\nDétail:\n" + "\n".join(errors[-5:])
 
-        raise UserError(msg)
+        return {
+            'type': 'ir.actions.notify',
+            'message': msg,
+            'title': _('Import terminé'),
+            'sticky': False,
+        }
